@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "977360375759",
+    "project_id": "speekiai",
+    "storage_bucket": "speekiai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977360375759:android:134e1d4687c9b5bc7a4cba",
+        "android_client_info": {
+          "package_name": "com.example.e_learning_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977360375759-47gtabneb01e4a0ufc33tkbv8ovo6a9f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_learning_mobile",
+            "certificate_hash": "32376f80c3c6dc8c28127bd0c569aaed990c1185"
+          }
+        },
+        {
+          "client_id": "977360375759-a29r9f3220vq3mdtm67u2diane4m8frk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_learning_mobile",
+            "certificate_hash": "05cf595f314cabad7dc7be37f7ef7e4e72e4221e"
+          }
+        },
+        {
+          "client_id": "977360375759-40gd52m79im82hdeitupu8kmor7c4e86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9PrF1kttq9dWKoEMlmhQbYDMZ9ejITiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977360375759-40gd52m79im82hdeitupu8kmor7c4e86.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "977360375759-gkhut3b9plf5t7j1qqn1m2hb426on6u0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eLearningMobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

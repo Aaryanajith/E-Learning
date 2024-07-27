@@ -1,0 +1,69 @@
+variables:
+  FLUTTER_VERSION: "3.22.1"
+  FLUTTER_IMAGE: "growerp/flutter-sdk-image"
+
+stages:
+  - analyze
+  - build
+  - test
+  - release
+
+analyze_job:
+  stage: analyze
+  image: $FLUTTER_IMAGE:$FLUTTER_VERSION
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'development' || $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_MERGE_REQUEST_ID
+  script:
+    - flutter clean
+    - flutter analyze
+
+build:apk:
+  stage: build
+  image: $FLUTTER_IMAGE:$FLUTTER_VERSION
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'development' || $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_MERGE_REQUEST_ID
+  script:
+    - flutter clean
+    - flutter build apk
+  artifacts:
+    paths:
+      - build/app/outputs/flutter-apk
+    expire_in: 1 day
+
+build:appbundle:
+  stage: build
+  image: $FLUTTER_IMAGE:$FLUTTER_VERSION
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'development' || $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_MERGE_REQUEST_ID
+  script:
+    - flutter clean
+    - flutter build appbundle
+  artifacts:
+    paths:
+      - build/app/outputs/bundle
+    expire_in: 1 day
+
+test_job:
+  stage: test
+  image: $FLUTTER_IMAGE:$FLUTTER_VERSION
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'development' || $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_MERGE_REQUEST_ID
+  script:
+    - flutter clean
+    - flutter test
+
+release_job:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_COMMIT_BRANCH == 'main'
+  script:
+    - RELEASE_VERSION=$(grep -o 'Release v[0-9.]\+' RELEASE_NOTES.md | awk '{print $2}')
+    - echo "Running release_job for version $RELEASE_VERSION..."
+    - release-cli create --name "Release $RELEASE_VERSION" --description "RELEASE_NOTES.md" --tag-name "$RELEASE_VERSION" --ref "$CI_COMMIT_SHA"
